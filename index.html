@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<div class="container-fluid">
+<div class="container-fluid" style="background-color: #F0FFFF;">
 <div class="col-md-6">
 <button type="button" class="btn btn-primary" id='btn1' onclick="Send(this);">Button 1</button>
 <button type="button" class="btn btn-primary" id='btn2' onclick="Send(this);">Button 2</button>
@@ -53,12 +53,12 @@ socket.onmessage = function(event) {
 
 function SetBlack(div)
 {
-div1.style.background = '#000000'
+div.style.background = '#000000'
 }
 
 function SetWhite(div)
 {
-	div1.style.background = '#FFFFFF'
+	div.style.background = '#FFFFFF'
 }
 
 function Send(obj)
