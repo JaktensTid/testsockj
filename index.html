@@ -15,12 +15,8 @@
 <div id="subscribe"></div>
 
 <script>
-	      if (!window.WebSocket) {
-	document.body.innerHTML = 'WebSocket в этом браузере не поддерживается.';
-}
-
-var HOST = location.origin.replace(/^http/, 'ws')
-var ws = new WebSocket(HOST);
+	      var HOST = location.origin.replace(/^http/, 'ws')
+      var socket = new WebSocket(HOST);
 
 // отправить сообщение из формы publish
 document.forms.publish.onsubmit = function() {
