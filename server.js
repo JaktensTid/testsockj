@@ -17,7 +17,7 @@ webSocketServer.on('connection', function(ws) {
     console.log('получено сообщение ' + message);
 
     for(var key in clients) {
-      clients[key].send(message);
+      clients[key].send(message + '|' + process.env.PORT);
     }
   });
 
@@ -37,5 +37,5 @@ http.createServer(function (req, res) {
 
 }).listen(process.env.PORT);
 
-console.log("Сервер запущен на портах 8080, 8081");
+console.log("Сервер запущен на порте " + process.env.PORT);
 
