@@ -6,7 +6,7 @@ var WebSocketServer = new require('ws');
 var clients = {};
 
 // WebSocket-сервер на порту 8081
-var webSocketServer = new WebSocketServer.Server({port: 8081});
+var webSocketServer = new WebSocketServer.Server({port: process.env.PORT});
 webSocketServer.on('connection', function(ws) {
 
   var id = Math.random();
@@ -35,7 +35,7 @@ http.createServer(function (req, res) {
   
   fileServer.serve(req, res);
 
-}).listen(process.env.PORT || 8080);
+}).listen(process.env.PORT);
 
 console.log("Сервер запущен на портах 8080, 8081");
 
