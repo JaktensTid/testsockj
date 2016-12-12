@@ -1,25 +1,41 @@
-'use strict';
+var http = require('http');
+var Static = require('node-static');
+var WebSocketServer = new require('ws');
 
-const express = require('express');
-const SocketServer = require('ws').Server;
-const path = require('path');
+// подключенные клиенты
+var clients = {};
 
-const PORT = process.env.PORT || 3000;
-const INDEX = path.join(__dirname, 'index.html');
+// WebSocket-сервер на порту 8081
+var webSocketServer = new WebSocketServer.Server({port: 8081});
+webSocketServer.on('connection', function(ws) {
 
-const server = express()
-  .use((req, res) => res.sendFile(INDEX) )
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
+  var id = Math.random();
+  clients[id] = ws;
+  console.log("новое соединение " + id);
 
-const wss = new SocketServer({ server });
+  ws.on('message', function(message) {
+    console.log('получено сообщение ' + message);
 
-wss.on('connection', (ws) => {
-  console.log('Client connected');
-  ws.on('close', () => console.log('Client disconnected'));
+    for(var key in clients) {
+      clients[key].send(message);
+    }
+  });
+
+  ws.on('close', function() {
+    console.log('соединение закрыто ' + id);
+    delete clients[id];
+  });
+
 });
 
-setInterval(() => {
-  wss.clients.forEach((client) => {
-    client.send(new Date().toTimeString());
-  });
-}, 1000);
+
+// обычный сервер (статика) на порту 8080
+var fileServer = new Static.Server('.');
+http.createServer(function (req, res) {
+  
+  fileServer.serve(req, res);
+
+}).listen(8080);
+
+console.log("Сервер запущен на портах 8080, 8081");
+
