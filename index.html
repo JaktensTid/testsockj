@@ -19,8 +19,8 @@
 	document.body.innerHTML = 'WebSocket в этом браузере не поддерживается.';
 }
 
-// создать подключение
-var socket = new WebSocket("ws://testsocknode.herokuapp.com/",8081);
+var HOST = location.origin.replace(/^http/, 'ws')
+var ws = new WebSocket(HOST);
 
 // отправить сообщение из формы publish
 document.forms.publish.onsubmit = function() {
