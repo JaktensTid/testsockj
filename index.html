@@ -9,12 +9,19 @@
 </head>
 <body>
 
-<div class="container-fluid" style="background-color: #F0FFFF; height: 100%; width: 100%">
-<div class="row container-fluid" style="height: 15%; width: 100%">
-<button type="button" class="btn btn-primary" id='btn1' onclick="Send(this);">Button 1</button>
+<div class="panel panel-default">
+    <div class="panel-heading clearfix">
+        <div class="btn-group pull-right row">
+            <button type="button" class="btn btn-primary" id='btn1' onclick="Send(this);">Button 1</button>
 <button type="button" class="btn btn-primary" id='btn2' onclick="Send(this);">Button 2</button>
 <button type="button" class="btn btn-primary" id='btn3' onclick="Send(this);">Button 3</button>
 <button type="button" class="btn btn-primary" id='btn4' onclick="Send(this);">Button 4</button>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" style="background-color: #F0FFFF;">
+<div class="row container-fluid" style="height: 15%; width: 100%">
 </div>
 <div class="row container-fluid" style="height: 85%; width: 100%">
 <div style="height: 192px; width: 192px;" style="background-color: #F0FFF0" id='div1'></div>
