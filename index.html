@@ -21,7 +21,7 @@
 // отправить сообщение из формы publish
 document.forms.publish.onsubmit = function() {
   var outgoingMessage = this.message.value;
-
+  console.log('Message sent ' + outgoingMessage)
   socket.send(outgoingMessage);
   return false;
 };
