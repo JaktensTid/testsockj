@@ -32,9 +32,9 @@
 
 <div class="container-fluid">
 <div class="row container-fluid" style="height=100%;">
-        <div class="col-md-6" id='div1' style="background-color: #F0FFF0">
+        <div class="col-md-6" id='div1' style="background-color: #F0FFF0; height: 300px;">
         </div>
-        <div class="col-md-6" id='div2' style="background-color: #F0FFF0">
+        <div class="col-md-6" id='div2' style="background-color: #F0FFF0; height: 300px;">
         </div>
     </div>
 </div>
@@ -45,9 +45,10 @@ div2 = document.getElementById('div2');
 	      var HOST = location.origin.replace(/^http/, 'ws')
       var socket = new WebSocket(HOST);
 
-//$(document).ready(function() { 
-//	div1.style.marginLeft = ((screen.width - (192 * 2 + 10)) / 2) + 'px';
-//});
+$(document).ready(function() { 
+	div1.style.height = $(div1).width();
+	div2.style.height = $(div2).width();
+});
 
 socket.onmessage = function(event) {
   if(event.data == 'btn1')
