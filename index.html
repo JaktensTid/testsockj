@@ -6,6 +6,9 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css"/>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+style{
+	.panel{margin-bottom:0px;}
+}
 </head>
 <body>
 
@@ -20,12 +23,12 @@
     </div>
 </div>
 
-<div class="container-fluid" style="background-color: #F0FFFF;">
+<div class="container-fluid" style="background-color: #F0FFFF; min-height: 100%; height:100%;">
 <div class="row container-fluid" style="height: 15%; width: 100%">
 </div>
 <div class="row container-fluid" style="height: 85%; width: 100%">
-<div style="height: 192px; width: 192px;" style="background-color: #F0FFF0" id='div1'></div>
-<div style="height: 192px; width: 192px;" style="background-color: #F0FFF0" id='div2'></div>
+<div style="height: 192px; width: 192px; margin-top: 20%;" style="background-color: #F0FFF0" id='div1'></div>
+<div style="height: 192px; width: 192px; margin-top: 20%;" style="background-color: #F0FFF0" id='div2'></div>
 </div>
 </div>
 
@@ -34,6 +37,11 @@ div1 = document.getElementById('div1');
 div2 = document.getElementById('div2');
 	      var HOST = location.origin.replace(/^http/, 'ws')
       var socket = new WebSocket(HOST);
+
+$(document).ready(function() { 
+	div1.style.marginLeft = ((screen.width - 192) / 2) + 'px';
+	div2.style.marginLeft = ((screen.width - 192) / 2) + 'px';
+});
 
 socket.onmessage = function(event) {
   if(event.data == 'btn1')
