@@ -2,41 +2,69 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css"/>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 
-<!-- форма для отправки сообщений -->
-<form name="publish">
-  <input type="text" name="message"/>
-  <input type="submit" value="Отправить"/>
-</form>
-
-<!-- здесь будут появляться входящие сообщения -->
-<div id="subscribe"></div>
+<div class="container-fluid">
+<div class="col-md-6">
+<button type="button" class="btn btn-primary" id='btn1' onclick="Send(this);">Button 1</button>
+<button type="button" class="btn btn-primary" id='btn2' onclick="Send(this);">Button 2</button>
+<button type="button" class="btn btn-primary" id='btn3' onclick="Send(this);">Button 3</button>
+<button type="button" class="btn btn-primary" id='btn4' onclick="Send(this);">Button 4</button>
+</div>
+<div class="col-md-6">
+<div width='192px' height='192px' style="background-color: #F0FFF0" id='div1'></div>
+<div width='192px' height='192px' style="background-color: #F0FFF0" id='div2'></div>
+</div>
+</div>
 
 <script>
+div1 = document.getElementById('div1');
+div2 = document.getElementById('div2');
 	      var HOST = location.origin.replace(/^http/, 'ws')
       var socket = new WebSocket(HOST);
 
-// отправить сообщение из формы publish
-document.forms.publish.onsubmit = function() {
-  var outgoingMessage = this.message.value;
-  console.log('Message sent ' + outgoingMessage)
-  socket.send(outgoingMessage);
-  return false;
-};
-
-// обработчик входящих сообщений
 socket.onmessage = function(event) {
-  var incomingMessage = event.data;
-  showMessage(incomingMessage); 
+  if(event.data == 'btn1')
+  {
+  	SetBlack(div1);
+  	SetBlack(div2);
+  }
+  if(event.data == 'btn2')
+  {
+  	SetBlack(div1);
+  	SetWhite(div2);
+  }
+  if(event.data == 'btn3')
+  {
+  	SetWhite(div1);
+  	SetBlack(div2);
+  }
+  if(event.data == 'btn4')
+  {
+  	SetWhite(div1);
+  	SetWhite(div2);
+  }
 };
 
-// показать сообщение в div#subscribe
-function showMessage(message) {
-  var messageElem = document.createElement('div');
-  messageElem.appendChild(document.createTextNode(message));
-  document.getElementById('subscribe').appendChild(messageElem);
+function SetBlack(div)
+{
+div1.style.background = '#000000'
+}
+
+function SetWhite(div)
+{
+	div1.style.background = '#FFFFFF'
+}
+
+function Send(obj)
+{
+var what = obj.id;
+socket.send(what);
 }
 </script>
 
