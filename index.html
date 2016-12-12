@@ -35,12 +35,14 @@
     </div>
 </div>
 
-<div class="container" style="background-color: #F0FFFF;">
-<!--<div style="height: 192px; width: 192px; margin-top: 20%; margin-bottom: 60%" class="col-xs-6" style="background-color: #F0FFF0" id='div1'></div>
-<div style="height: 192px; width: 192px; margin-top: 20%; margin-bottom: 60% margin-left: 10px" class="col-xs-6" style="background-color: #F0FFF0" id='div2'></div>-->
-<div class="row row-centered">
-        <div class="col-xs-6 col-centered col-fixed"><div class="item"><div style="background-color: #F0FFF0" id='div1'></div></div></div>
-        <div class="col-xs-6 col-centered col-fixed"><div class="item"><div style="background-color: #F0FFF0" id='div2'></div></div></div>
+<div class="container-fluid" style="background-color: #F0FFFF;">
+<div class="row">
+        <div class="col-xs-6" id='div1' style="background-color: #F0FFF0">
+            ONE
+        </div>
+        <div class="col-xs-6" id='div2' style="background-color: #F0FFF0">
+            TWO
+        </div>
     </div>
 </div>
 
@@ -50,9 +52,9 @@ div2 = document.getElementById('div2');
 	      var HOST = location.origin.replace(/^http/, 'ws')
       var socket = new WebSocket(HOST);
 
-//$(document).ready(function() { 
-//	div1.style.marginLeft = ((screen.width - (192 * 2 + 10)) / 2) + 'px';
-//});
+$(document).ready(function() { 
+	div1.style.marginLeft = ((screen.width - (192 * 2 + 10)) / 2) + 'px';
+});
 
 socket.onmessage = function(event) {
   if(event.data == 'btn1')
